@@ -28,30 +28,30 @@ This repository is built on top ionic2-template-nav-menu repository, it consists
             ...
     
 3. Import relevant dependencies to your data-service.ts
-    <pre><code>
+    ```
         import { Injectable } from '@angular/core';
         import { Http, Headers, RequestOptions, RequestMethod, Response } from '@angular/http';
         import { Observable } from 'rxjs/Rx';
         import 'rxjs/add/operator/map';
-    </code></pre>
+    ```
 
 4. Define an interface class for callback purpose, put this code outside of your class
-    <pre><code>
+    ```
         export interface PostResponse {
             successCallback(postResult: String);
             failCallback(error: any);
         }
-    </code></pre>
+    ```
 
 5. In DataService class, add following codes:
 
     1. initialise PostResponse
-        <pre><code>
+        ```
             postResponse: PostResponse;
-        </code></pre>
+        ```
         
     2. call service method that will return  you with Observable
-        <pre><code>
+        ```
             private callService(body: Object): Observable<Comment[]> {
                 let bodyString = JSON.stringify(body);
                 let headers = new Headers(this.restHeader);
@@ -64,10 +64,10 @@ This repository is built on top ionic2-template-nav-menu repository, it consists
                 .map((res: Response) => res.json())
                 .catch((error: any) => Observable.throw(error.json().error));
             }
-        </code></pre>
+        ```
         
     3. add handler for success and fail scenario
-        <pre><code>
+        ```
             private postResultHandler(response: any) {
                  //handle your http response here
                 this.postResponse.successCallback(JSON.stringify(response));
@@ -77,10 +77,10 @@ This repository is built on top ionic2-template-nav-menu repository, it consists
                 //handle your error here
                 this.postResponse.failCallback(error);
             }
-        </code></pre>
+        ```
         
     4. expose a method named "connectHttpPost" to make available to all classes to use
-        <pre><code>
+        ```
             private restURL = 'http://yourRestServiceURL/method;
             private restHeader = { 'Content-Type': 'application/json' };
             
@@ -93,32 +93,32 @@ This repository is built on top ionic2-template-nav-menu repository, it consists
                     error => { this.postErrorHandler(error) }
                 );
             }
-        </code></pre>
+        ```
     
     You are now completed your data service providers ready to be called in other pages.
 
 6. To use Providers in Page, follow the steps here:
 
     1. Import DataService & PostResponse to your <page>.ts
-        <pre><code>
+        ```
             import { DataService, PostResponse } from '../../providers/data-service/data-service';
-        </code></pre>
+        ```
         
     2. Add your DataService into @Component
-        <pre><code>
+        ```
             @Component({
                 templateUrl: 'build/pages/service/service.html',
                 providers: [DataService]
             })
-        </code></pre>
+        ```
         
     3. Your page should implement RestResponse for callback function
-        <pre><code>
+        ```
             export class ServicePage implements PostResponse {
-        </code></pre>
+        ```
         
     4. Implement interface classes here
-        <pre><code>
+        ```java
             successCallback(result: String) {
                 //handle your result here
                 alert("Result :: " + result);
@@ -128,15 +128,15 @@ This repository is built on top ionic2-template-nav-menu repository, it consists
                 //handle failed http post scenario
                 alert("Error :: " + error);
             }
-        </code></pre>
+        ```
         
     5. Add your dataservice to your page's constructor
-        <pre><code>
+        ```java
             constructor(private navCtrl: NavController, private dataService:DataService) {}
-        </code></pre>
+        ```
         
     6. Create a method to be triggered from UI action or for class to consume
-        <pre><code>
+        ```
             connect() {
                 //this is the JSON body that of your request
                 let bodyObj = { 'lastModifiedDt': '0' };
@@ -144,12 +144,12 @@ This repository is built on top ionic2-template-nav-menu repository, it consists
                 //establish connection and register callback method into it
                 this.dataService.connectHttpPost(bodyObj, this);
             }
-        </code></pre>
+        ```
         
 7. Now you would like to trigger it from a button
-    <pre><code>
-        <button block primary outline (click)='connect()'>HTTP POST</button>
-    </code></pre>
+    ```html
+    <button block primary outline (click)='connect()'>HTTP POST</button>
+    ```
 
 8. HTTP POST do not function if you are using ionic serve, deploy the project to your device to test it.
     ```
