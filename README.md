@@ -1,6 +1,7 @@
 # Ionic2 - Observable Dataservice
 
 Author: CodeDee
+
 Contributor: sktw666
 
 This repository is built on top ionic2-template-nav-menu repository, it consists of a data service class and a sample callback function. If you would like to learn how to implement this into your Ionic2 projects, please continue to the section below.
