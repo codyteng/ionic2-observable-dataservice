@@ -82,7 +82,8 @@ This repository is built on top ionic2-template-nav-menu repository, it consists
         
     4. expose a method named "connectHttpPost" to make available to all classes to use
         ```
-            private restURL = 'http://yourRestServiceURL/method;
+            //replace the restURL to your HTTP POST URL
+            private restURL = 'http://yourRestServiceURL/method';
             private restHeader = { 'Content-Type': 'application/json' };
             
             connectHttpPost(body: Object, postResponse: PostResponse) {
@@ -139,8 +140,15 @@ This repository is built on top ionic2-template-nav-menu repository, it consists
     6. Create a method to be triggered from UI action or for class to consume
         ```
             connect() {
+<<<<<<< HEAD
                 //this is the JSON body that of your request
                 let bodyObj = { 'lastModifiedDt': '0' };
+=======
+                //this is the JSON body of your request
+                let bodyObj = {
+                    //your HTTP POST request body here
+                };
+>>>>>>> 6a5290e44c47ac91c0e0e0af20f4037bd0b4b58d
                 
                 //establish connection and register callback method into it
                 this.dataService.connectHttpPost(bodyObj, this);
