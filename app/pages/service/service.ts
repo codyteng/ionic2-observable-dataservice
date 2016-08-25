@@ -28,8 +28,10 @@ export class ServicePage implements PostResponse {
   }
 
   connect() {
-    //this is the JSON body that of your request
-    let bodyObj = { 'lastModifiedDt': '0' };
+    //this is the JSON body of your request
+    let bodyObj = {
+      //your HTTP POST request body here
+    };
 
     //establish connection
     this.dataService.connectHttpPost(bodyObj, this);

@@ -23,7 +23,8 @@ export class DataService {
 
   constructor(private http: Http) { }
 
-  private restURL = 'http://smes.silverlakegroup.com.my:49167/mbdes/api/rest/getSpeakerList';
+  //replace the restURL to your HTTP POST URL
+  private restURL = 'http://yourRestServiceURL/method';
   private restHeader = { 'Content-Type': 'application/json' };
 
   connectHttpPost(body: Object, postResponse: PostResponse) {
